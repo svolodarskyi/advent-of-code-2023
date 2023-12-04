@@ -1,3 +1,3 @@
-# advent_of_code_2023
+This repository showcasing the script i built to solve the Advent Of Code 2023 tasks.
 
-This repository contains solution for the Advent Of Code 2023
+Join @ [Advent of Code 2023](https://adventofcode.com/2023)
