@@ -2,7 +2,7 @@ with open("./input.txt", "r") as f:
     task_input = [i.strip() for i in f]
 
 
-def first_digit(data: str, direction: str) -> int:
+def first_digit(data: str, direction: str) -> str:
     if direction == 'f':
         data = data
     if direction == 'b':
