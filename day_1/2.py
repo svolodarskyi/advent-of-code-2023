@@ -1,4 +1,4 @@
-with open("./input.txt", "r") as f:
+with open('./input/day_01.txt', 'r') as f:
     input_file = [l.strip() for l in f]
 
 valid_digits = {

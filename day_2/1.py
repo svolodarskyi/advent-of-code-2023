@@ -1,4 +1,4 @@
-with open('./input.txt', 'r') as f:
+with open('./input/day_02.txt', 'r') as f:
     input_file = [l.strip() for l in f]
 
 quialify_count = { 'red': 12, 'green': 13, 'blue': 14 }
