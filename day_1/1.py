@@ -1,5 +1,5 @@
 with open('./input/day_01.txt', 'r') as f:
-    input_file = [l.strip() for l in f]
+    task_input = [l.strip() for l in f]
 
 def first_digit(data: str, direction: str) -> str:
     if direction == 'f':
