@@ -5,7 +5,7 @@ line_idx = list(range(len(input_file)))
 char_idx = list(range(len(input_file[0])))
 char_loc = {}
 numb_loc = {}
-
+numb_around = {}
 char_prev = ""
 numb = ''
 numb_start_loc = None
@@ -45,14 +45,15 @@ for line_id in line_idx:
                 numb_start_loc = None
         
 
-for line_num, numb_location in numb_loc.items():
-    char_around = char_loc.get(line_num-1, [])  + char_loc.get(line_num, [])  + char_loc.get(line_num+1, []) 
-    char_around_un = list(set(char_around))
-    for number in numb_location: 
-        _num, _start_loc, _end_loc = tuple(number.split('-'))
-        for ch in char_around_un:
-            if ch >= (int(_start_loc) - 1) and ch <= (int(_end_loc) + 1):
-                numb_around_char.append()
+for line_num, char_locat in char_loc.items():
+    num_around = numb_loc.get(line_num-1, [])  + numb_loc.get(line_num, [])  + numb_loc.get(line_num+1, []) 
+    for ch in char_locat: 
+        for number in num_around:
+            _num, _start_loc, _end_loc = tuple(number.split('-'))
+            if int(ch) >= (int(_start_loc) - 1) and int(ch) <= (int(_end_loc) + 1):
+                numb_around.setdefault(str(line_num)+"-"+str(ch), []).append(_num)
 
 
-print(sum(numb_around_char))
+result = sum([int(v[0]) * int(v[1]) for k, v in numb_around.items() if len(v) == 2])
+
+print(result)
