@@ -27,32 +27,47 @@ def encode_hand(hand: str)-> str:
 
 def define_type(sorted_count: list[int]) -> int:
     ''' 
-        defines the type(ranking) being five_of_a_kind as 1 and high_card as 8.
-        ranking in ascending order, being 1 is "highter" than 8.
-        five_of_a_kind > four_of_a_kind > full_house > three_kind > two_pair > one_pair > high_card
+        defines the type(ranking) being five_of_a_kind as 7 and high_card as 1.
+        ranking in descending order.
     '''
     if sorted_count == [5]:
-        return 1
+        #five_of_a_kind
+        return 7
     elif sorted_count == [1,4]:
-        return 2
+        #four_of_a_kind
+        return 6
     elif sorted_count == [2,3]:
-        return 3
+        #full_house
+        return 5
     elif sorted_count == [1,1,3]:
+        #three_kind
         return 4
     elif sorted_count == [1,2,2]:
-        return 5
+        #two_pair
+        return 3
     elif sorted_count == [1,1,1,2]:
-        return 6
+        #one_pair
+        return 2
     elif sorted_count == [1,1,1,1,1]:
-        return 7
+        #high_card
+        return 1
     
 
-hand_types = {}
 encoded_hands = {encode_hand(hand.split()[0]):hand.split()[1] for hand in hands}
 
+hand_types = {}
+#group hands by type
 for encoded_hand in encoded_hands.keys():
     hand_counted = dict(Counter(encoded_hand))
     hand_counted_sorted = sorted(hand_counted.values())
     hand_types.setdefault(define_type(hand_counted_sorted), []).append(encoded_hand)
 
-print(sorted(hand_types[2]))
+all_types = []
+#when iterating keep the order assigned in the function `define_type`
+for key in sorted(hand_types.keys(),reverse=False):
+# #when sorting between items of the same type, sort them in acending order
+     all_types += sorted(hand_types.get(key),reverse=False)
+
+total_winnings = sum([int((o+1))*int(encoded_hands[i]) for o,i in enumerate(all_types)])    
+
+print(total_winnings)
